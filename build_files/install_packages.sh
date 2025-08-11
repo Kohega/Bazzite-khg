@@ -8,17 +8,6 @@ log() {
   echo "=== $* ==="
 }
 
-log "Remove flatpak apps"
-REMOVE_FLATPAK=(
-    app/org.mozilla.firefox/x86_64/stable
-    app/org.kde.gwenview/x86_64/stable
-    app/org.kde.okular/x86_64/stable
-    app/org.kde.kcalc/x86_64/stable
-    app/org.kde.haruna/x86_64/stable
-    app/org.kde.filelight/x86_64/stable
-)
-flatpak remove --delete-data "${LAYERED_PACKAGES[@]}"
-
 log "Enable Copr repos"
 
 

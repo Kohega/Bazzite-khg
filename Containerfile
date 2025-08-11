@@ -4,6 +4,7 @@ COPY build_files /
 
 # Aurora based
 FROM ghcr.io/ublue-os/bazzite:stable AS base
+RUN rm /usr/share/ublue-os/bazzite/flatpak/install
 COPY system_files /
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
