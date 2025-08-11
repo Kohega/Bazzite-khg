@@ -8,12 +8,6 @@ log() {
   echo "=== $* ==="
 }
 
-log "Enable RPM Fusion"
-
-dnf5 -y install \
-        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-
 log "Enable Copr repos"
 
 COPR_REPOS=(
@@ -46,7 +40,7 @@ LAYERED_PACKAGES=(
     SDL2_image
     inih
     kget
-    heroic-games-launcher-bin$
+    heroic-games-launcher-bin
     kodi
     kodi-inputstream-adaptive
     audacity
@@ -56,7 +50,7 @@ LAYERED_PACKAGES=(
     qemu
     libvirt
 )
-dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable -y "${LAYERED_PACKAGES[@]}"
+dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
 log "Disable Copr repos as we do not need it anymore"
 
