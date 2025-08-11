@@ -46,9 +46,33 @@ LAYERED_PACKAGES=(
     heroic-games-launcher-bin
     v4l2loopback
     v4l2loopback-kmod
+    gamescope.x86_64
+    gamescope-libs.x86_64
+    gamescope-libs.i686
+    gamescope-shaders
+    umu-launcher
+    dbus-x11
+    xdg-user-dirs
+    gobject-introspection
+    libFAudio.x86_64
+    libFAudio.i686
+    vkBasalt.x86_64
+    vkBasalt.i686
+    mangohud.x86_64
+    mangohud.i686
+    libobs_vkcapture.x86_64
+    libobs_glcapture.x86_64
+    libobs_vkcapture.i686
+    libobs_glcapture.i686
+    VK_hdr_layer
+    steam
+    lutris
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable -y "${LAYERED_PACKAGES[@]}"
 
+/ctx/ghcurl "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" --retry 3 -Lo /usr/bin/winetricks && \
+    chmod +x /usr/bin/winetricks && \
+    
 log "Disable Copr repos as we do not need it anymore"
 
 for repo in "${COPR_REPOS[@]}"; do
