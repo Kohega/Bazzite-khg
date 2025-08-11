@@ -11,7 +11,7 @@ log() {
 # Remove pre-installed flatpak apps
 log "Remove pre-installed Flatpaks"
 
-flatpak remove --delete-data -y io.github.pwr_solaar.solaar org.mozilla.Thunderbird org.mozilla.firefoxorg.kde.kcalc org.kde.skanpage org.kde.kontact org.kde.gwenview org.kde.kontact org.kde.okular org.kde.kweather org.kde.kclock org.fkoehler.KTailctl org.kde.haruna io.github.input_leap.input-leap org.gustavoperedo.FontDownloader
+# flatpak remove --delete-data -y io.github.pwr_solaar.solaar org.mozilla.Thunderbird org.mozilla.firefoxorg.kde.kcalc org.kde.skanpage org.kde.kontact org.kde.gwenview org.kde.kontact org.kde.okular org.kde.kweather org.kde.kclock org.fkoehler.KTailctl org.kde.haruna io.github.input_leap.input-leap org.gustavoperedo.FontDownloader
 
 log "Enable Copr repos"
 
