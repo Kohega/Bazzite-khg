@@ -17,7 +17,7 @@ REMOVE_FLATPAK=(
     app/org.kde.haruna/x86_64/stable
     app/org.kde.filelight/x86_64/stable
 )
-flatpak remove --delete-data --unused "${LAYERED_PACKAGES[@]}"
+flatpak remove --delete-data "${LAYERED_PACKAGES[@]}"
 
 log "Enable Copr repos"
 
