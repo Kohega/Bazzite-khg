@@ -8,10 +8,11 @@ log() {
   echo "=== $* ==="
 }
 
-# Remove pre-installed flatpak apps
-log "Remove pre-installed Flatpaks"
+log "Enable RPM Fusion"
 
-# flatpak remove --delete-data -y io.github.pwr_solaar.solaar org.mozilla.Thunderbird org.mozilla.firefoxorg.kde.kcalc org.kde.skanpage org.kde.kontact org.kde.gwenview org.kde.kontact org.kde.okular org.kde.kweather org.kde.kclock org.fkoehler.KTailctl org.kde.haruna io.github.input_leap.input-leap org.gustavoperedo.FontDownloader
+dnf5 -y install \
+        https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+        https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
 
 log "Enable Copr repos"
 
@@ -19,6 +20,7 @@ COPR_REPOS=(
     ilyaz/LACT
     zliced13/YACR
     atim/heroic-games-launcher
+    zeno/scrcpy
 )
 for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
@@ -44,35 +46,17 @@ LAYERED_PACKAGES=(
     SDL2_image
     inih
     kget
-    heroic-games-launcher-bin
-    v4l2loopback
-    v4l2loopback-kmod
-    gamescope.x86_64
-    gamescope-libs.x86_64
-    gamescope-libs.i686
-    gamescope-shaders
-    umu-launcher
-    dbus-x11
-    xdg-user-dirs
-    gobject-introspection
-    libFAudio.x86_64
-    libFAudio.i686
-    vkBasalt.x86_64
-    vkBasalt.i686
-    mangohud.x86_64
-    mangohud.i686
-    libobs_vkcapture.x86_64
-    libobs_glcapture.x86_64
-    libobs_vkcapture.i686
-    libobs_glcapture.i686
-    VK_hdr_layer
-    steam
-    lutris
+    heroic-games-launcher-bin$
+    kodi
+    kodi-inputstream-adaptive
+    audacity
+    bleachbit
+    scrcpy
+    virt-manager
+    qemu
+    libvirt
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable -y "${LAYERED_PACKAGES[@]}"
-
-/ctx/ghcurl "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" --retry 3 -Lo /usr/bin/winetricks && \
-    chmod +x /usr/bin/winetricks && \
 
 log "Disable Copr repos as we do not need it anymore"
 

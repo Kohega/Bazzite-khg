@@ -20,13 +20,9 @@ log() {
   echo "== $* =="
 }
 
-
 log "Starting building"
 ### Create root directory for hdd mount points 
-mkdir /data /games
-
-### Install Bazzite Kernel
-echo_group /ctx/install-kernel-akmods
+mkdir /data /videos
 
 ### Install packages
 log "Installing apps"
@@ -42,11 +38,10 @@ log "Enabling system services"
 systemctl enable podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service
 
 log "Adding personal just recipes"
-echo "import \"/usr/share/kohega/just/kohega.just\"" >>/usr/share/ublue-os/justfile
+echo "import \"/usr/share/kohega/just/kohega.just\"" >> /usr/share/ublue-os/justfile
 
-
-#log "Rebuild initramfs"
-#echo_group /ctx/build-initramfs.sh
+log "Rebuild initramfs"
+echo_group /ctx/build-initramfs.sh
 
 log "Post build cleanup"
 echo_group /ctx/cleanup.sh

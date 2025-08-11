@@ -15,12 +15,11 @@ KERNEL_VERSION="$(dnf5 repoquery --installed --queryformat='%{evr}.%{arch}' kern
   --no-hostonly \
   --kver "$KERNEL_VERSION" \
   --reproducible \
-  --regenerate-all
   --zstd \
   -v \
   --add ostree \
   -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
 
-chmod 0600 "/usr/lib/modules/$KERNEL_VERSION/*"
+chmod 0600 "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
 
 log "Build completed"
