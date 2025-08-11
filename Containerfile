@@ -25,7 +25,8 @@ RUN --mount=type=cache,dst=/var/cache \
     dnf5 -y install \
         scx-scheds && \
     dnf5 -y copr disable bieszczaders/kernel-cachyos-addons && \
-    dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite bootc bootc && \   
+    dnf5 -y swap --repo copr:copr.fedorainfracloud.org:bazzite-org:bazzite bootc bootc && \
+    /ctx/build-initramfs.sh && \
     ostree container commit
     
 ### LINTING

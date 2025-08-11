@@ -1,0 +1,21 @@
+{
+  "KPlugin": {
+      "Name": "Steal Focus",
+      "Description": "Let window requiring attention steal focus.",
+      "Icon": "preferences-system-windows",
+      
+      "Authors": [
+          {
+              "Email": "70728036+maribox@users.noreply.github.com. ",
+              "Name": "Marius Bosler"
+          }
+      ],
+      "Id": "KDE-Focus-Stealer",
+      "Version": "1.0",
+      "License": "MIT",
+      "Website": "https://github.com/maribox/KDE-Focus-Stealer"
+  },
+  "X-Plasma-API": "javascript",
+  "X-Plasma-MainScript": "code/main.js",
+  "KPackageStructure": "KWin/Script"
+}

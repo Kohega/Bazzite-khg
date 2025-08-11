@@ -28,6 +28,7 @@ log "Install layered applications"
 
 # Layered Applications
 LAYERED_PACKAGES=(
+    aria2c
     kcalc
     konsole
     kate
@@ -72,7 +73,7 @@ dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable 
 
 /ctx/ghcurl "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" --retry 3 -Lo /usr/bin/winetricks && \
     chmod +x /usr/bin/winetricks && \
-    
+
 log "Disable Copr repos as we do not need it anymore"
 
 for repo in "${COPR_REPOS[@]}"; do
