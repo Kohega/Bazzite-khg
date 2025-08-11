@@ -25,6 +25,9 @@ log "Starting building"
 ### Create root directory for hdd mount points 
 mkdir /data /games
 
+### Install Bazzite Kernel
+echo_group /ctx/install-kernel-akmods
+
 ### Install packages
 log "Installing apps"
 echo_group /ctx/install_packages.sh
