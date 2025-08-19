@@ -50,6 +50,7 @@ LAYERED_PACKAGES=(
     virt-manager
     gh
     qbittorrent
+    discord
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
