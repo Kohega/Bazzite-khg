@@ -16,6 +16,7 @@ COPR_REPOS=(
     zliced13/YACR
     atim/heroic-games-launcher
     zeno/scrcpy
+    codifryed/CoolerControl
 )
 for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
@@ -51,6 +52,7 @@ LAYERED_PACKAGES=(
     gh
     qbittorrent
     discord
+    coolercontrold
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
