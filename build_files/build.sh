@@ -22,7 +22,7 @@ log() {
 
 log "Starting building"
 ### Create root directory for hdd mount points 
-mkdir /data /videos
+mkdir /data /videos /games
 
 ### Install packages
 log "Installing apps"
