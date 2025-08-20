@@ -33,6 +33,7 @@ LAYERED_PACKAGES=(
     krename
     haruna
     okular
+    gwenview
     syncthing
     filezilla
     firefox
