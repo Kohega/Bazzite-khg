@@ -1,4 +1,4 @@
-# LUMINESCENCE
+# Bazzite - KHG's ver.
 
 # Purpose
 
