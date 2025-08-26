@@ -18,18 +18,75 @@ This repository is my own custom [bootc](https://github.com/bootc-dev/bootc) ima
 - kvantum
 
 ## Layered
-- calc
-- konsole
-- kate
-- krename
-- haruna
-- okular
-- syncthing
-- filezilla
-- firefox
-- firefox-langpacks
-- lact
-- zerotier
+
+### Productivity and Utilities
+| Application  | Description                                                      |
+|--------------|------------------------------------------------------------------|
+| BleachBit    | System cleaner to free space and protect privacy.              |
+| Lact         | Tool to manage keyboard shortcuts on Linux.                     |
+
+---
+
+### Internet and Network
+| Application       | Description                                                      |
+|-------------------|------------------------------------------------------------------|
+| Discord           | Voice and text messaging app for communities.                   |
+| FileZilla         | FTP, FTPS, and SFTP client for file transfers.                  |
+| Firefox           | Open-source web browser.                                         |
+| Firefox-langpacks | Language packs for Firefox.                                     |
+| qBittorrent       | Open-source BitTorrent client.                                  |
+| Syncthing         | Decentralized file synchronization tool.                        |
+
+---
+
+### Multimedia
+| Application               | Description                                                      |
+|----------------------------|------------------------------------------------------------------|
+| Audacity                   | Open-source audio editor.                                        |
+| Haruna                     | Video player for KDE.                                            |
+| Heroic Games Launcher (bin)| Game launcher for Epic Games and GOG on Linux.                   |
+| Kodi                       | Media center for organizing and playing movies, music, etc.     |
+| kodi-inputstream-adaptive  | Kodi plugin for adaptive streaming playback.                    |
+
+---
+
+### Development and Libraries
+| Application  | Description                                                      |
+|--------------|------------------------------------------------------------------|
+| gh           | Command-line tool to interact with GitHub.                       |
+| inih         | Library for parsing INI files.                                  |
+| SDL2_image   | Library for loading images (PNG, JPEG, etc.) with SDL2.         |
+| SDL2_ttf     | Library for rendering TrueType fonts with SDL2.                 |
+
+---
+
+### Virtualization and System Administration
+| Application      | Description                                                      |
+|------------------|------------------------------------------------------------------|
+| CoolerControl    | Tool to control fans and PC cooling.                             |
+| Virt-Manager     | Graphical interface for managing virtual machines (KVM/QEMU).   |
+
+---
+
+### System and Terminal Tools
+| Application  | Description                                                      |
+|--------------|------------------------------------------------------------------|
+| aria2c       | Command-line tool for downloading files (HTTP, FTP, etc.).      |
+| scrcpy       | Tool to control an Android device from a PC.                    |
+
+---
+
+### KDE Applications
+| Application  | Description                                                      |
+|--------------|------------------------------------------------------------------|
+| Kate         | Advanced text editor for KDE.                                    |
+| KCalc        | Scientific calculator for KDE.                                  |
+| Konsole      | Terminal emulator for KDE.                                      |
+| KGet         | Download manager for KDE.                                        |
+| KRename      | Batch file renaming tool.                                        |
+| Gwenview     | Image viewer for KDE.                                            |
+| Okular       | Universal document viewer (PDF, EPUB, images, etc.).            |
+
 
 # Community
 
