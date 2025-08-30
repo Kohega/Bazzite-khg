@@ -1,10 +1,11 @@
-name: Build container image
+name: Build Default Image
+
 on:
   pull_request:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * SUN'  # 10:05am UTC everyday
+    - cron: '05 10 * * SUN'  # 10:05am UTC every Sunday
   push:
     branches:
       - main
@@ -13,14 +14,17 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_DESC: "Bazzite adapted to my needs"
+  IMAGE_DESC: "Bazzite default variant adapted to my needs"
+  IMAGE_NAME: 'bazzite-khg'
   IMAGE_KEYWORDS: "bootc,ublue,universal-blue,kohega,khg"
   IMAGE_LOGO_URL: "https://avatars.githubusercontent.com/u/120078124?s=200&v=4"
   DEFAULT_TAG: "latest"
-  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"
+  CONTAINERFILE: './Containerfile.default'
+  BASE_IMAGE: 'ghcr.io/ublue-os/bazzite:stable'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -31,23 +35,12 @@ jobs:
       contents: read
       packages: write
       id-token: write
-    strategy:
-      matrix:
-        variant: ['default', 'gnome']
-        include:
-          - variant: 'default'
-            image_name: 'bazzite-khg'
-            base_image: 'ghcr.io/ublue-os/bazzite:stable'
-          - variant: 'gnome'
-            image_name: 'bazzite-gnome-khg'
-            base_image: 'ghcr.io/ublue-os/bazzite-gnome:stable'
+
     steps:
       - name: Prepare environment
         run: |
-          echo "IMAGE_REGISTRY=${IMAGE_REGISTRY}" >> ${GITHUB_ENV}
-          echo "IMAGE_NAME=${{ matrix.image_name }}" >> ${GITHUB_ENV}
-          echo "IMAGE_VARIANT=${{ matrix.variant }}" >> ${GITHUB_ENV}
-          echo "BASE_IMAGE=${{ matrix.base_image }}" >> ${GITHUB_ENV}
+          echo "IMAGE_REGISTRY=${IMAGE_REGISTRY,,}" >> ${GITHUB_ENV}
+          echo "IMAGE_NAME=${{ env.IMAGE_NAME }}" >> ${GITHUB_ENV}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -92,13 +85,12 @@ jobs:
       - name: Build Image
         uses: redhat-actions/buildah-build@v2
         with:
-          containerfiles: ./Containerfile
+          containerfiles: ${{ env.CONTAINERFILE }}
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           build-args: |
-            IMAGE_VARIANT=${{ matrix.variant }}
-            BASE_IMAGE=${{ matrix.base_image }}
+            BASE_IMAGE=${{ env.BASE_IMAGE }}
           oci: false
 
       - name: Login to GitHub Container Registry
@@ -111,7 +103,7 @@ jobs:
 
       - name: Lowercase Registry
         id: registry_case
-        uses: ASzc/change-string-case-action@d0603cd0a7dd490be678164909f65c7737470a7f # v6
+        uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ env.IMAGE_REGISTRY }}
 

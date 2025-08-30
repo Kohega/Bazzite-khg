@@ -47,6 +47,8 @@ dnf5 install -y \
 
 echo_group /ctx/install_packages.sh
 
+dnf5 install -y ctx/rpm/kde/kvantum-1.1.5-1.fc42.x86_64.rpm
+
 log "Allow Samba on home dirs"
 setsebool -P samba_enable_home_dirs=1
 
