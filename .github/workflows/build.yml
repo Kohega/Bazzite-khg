@@ -27,6 +27,7 @@ jobs:
   build_push:
     name: Build and push image
     runs-on: ubuntu-24.04
+
     permissions:
       contents: read
       packages: write
@@ -110,6 +111,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@d0603cd0a7dd490be678164909f65c7737470a7f # v6
+        with:
+          string: ${{ env.PUSH_IMAGE_REGISTRY }}
+
 
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
