@@ -18,7 +18,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
     ostree container commit
 
-# Bazzite KDE
+# Bazzite GNOME
+ARG IMAGE_VARIANT="gnome"
 FROM ${BASE_IMAGE} AS base-gnome
 RUN rm /usr/share/ublue-os/bazzite/flatpak/install
 COPY system_files /
