@@ -3,7 +3,7 @@ COPY build_files /
 
 FROM ghcr.io/ublue-os/bazzite-gnome:stable AS bazzite-gnome
 RUN rm /usr/share/ublue-os/bazzite/flatpak/install
-COPY system_files /
+COPY system_files/gnome system_files/shared /
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \

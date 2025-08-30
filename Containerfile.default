@@ -3,7 +3,7 @@ COPY build_files /
 
 FROM ghcr.io/ublue-os/bazzite:stable AS bazzite-khg
 RUN rm /usr/share/ublue-os/bazzite/flatpak/install
-COPY system_files /
+COPY system_files/kde system_files/shared /
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
