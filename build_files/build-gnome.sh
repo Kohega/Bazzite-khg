@@ -32,9 +32,28 @@ log "Install layered applications"
 # Layered Applications
 LAYERED_PACKAGES=(
     nemo
+    totem
+    cinnamon-translations
+    nemo-fileroller
+    nemo-extensions
+    nemo-preview
     ulauncher
     clapper
     gnome-tweaks
+    gnome-calendar
+    gnome-calculator
+    gnome-keyring
+    gnome-shell
+    gnome-session
+    gnome-control-center
+    gdm
+    file-roller
+    xdg-user-dirs-gtk
+    evince
+    loupe
+    gedit
+    gnome-calculator
+    gnome-online-accounts
 )
 dnf5 install -y \
     --setopt=install_weak_deps=False \
