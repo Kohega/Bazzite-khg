@@ -34,6 +34,7 @@ LAYERED_PACKAGES=(
     nemo
     ulauncher
     clapper
+    gnome-tweaks
 )
 dnf5 install -y \
     --setopt=install_weak_deps=False \
