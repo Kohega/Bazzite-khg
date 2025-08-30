@@ -25,8 +25,6 @@ log "Starting building"
 mkdir /data /videos /games
 
 ### Install packages
-echo_group "Installing apps"
-
 log "Install layered applications"
 
 # KDE Applications

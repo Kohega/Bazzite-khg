@@ -4,13 +4,12 @@ ARG BASE_IMAGE="ghcr.io/ublue-os/bazzite:stable"
 
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
-COPY build_files /build_files
+COPY build_files /
 
 # Bazzite KDE
-FROM ${BASE_IMAGE} AS bazzite-khg
+FROM ${BASE_IMAGE} AS base
 RUN rm /usr/share/ublue-os/bazzite/flatpak/install
-COPY system_files/shared system_files/${BASE_IMAGE_NAME} /
-
+COPY system_files /
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
@@ -18,15 +17,11 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     /ctx/build.sh && \
 
     ostree container commit
-# LINTING
-# Verify final image and contents are correct.   
-RUN bootc container lint
 
-# Bazzite GNOME
-FROM ${BASE_IMAGE} AS bazzite-gnome-khg
+# Bazzite KDE
+FROM ${BASE_IMAGE} AS base-gnome
 RUN rm /usr/share/ublue-os/bazzite/flatpak/install
-COPY system_files/shared system_files/${BASE_IMAGE_NAME} /
-
+COPY system_files /
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
@@ -35,6 +30,4 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
     ostree container commit
 
-# LINTING
-# Verify final image and contents are correct.
 RUN bootc container lint
