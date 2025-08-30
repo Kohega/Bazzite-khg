@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="gip*", ATTR{mode}="1", ATTR{brightness}="2"
