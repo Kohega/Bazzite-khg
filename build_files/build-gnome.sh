@@ -25,21 +25,15 @@ log "Starting building"
 mkdir /data /videos /games
 
 ### Install packages
-echo_group "Installing apps"
+log "Installing apps"
 
 log "Install layered applications"
 
-# KDE Applications
+# Layered Applications
 LAYERED_PACKAGES=(
-  kget
-  kate
-  okular
-  gwenview
-  haruna
-  ark
-  kcalc
-  konsole
-  krename
+    nemo
+    ulauncher
+    clapper
 )
 dnf5 install -y \
     --setopt=install_weak_deps=False \
@@ -56,7 +50,7 @@ log "Enable loading kernel modules"
 setsebool -P domain_kernel_load_modules on
 
 log "Enabling system services"
-systemctl enable podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service coolercontrold.service
+systemctl enable podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service
 
 log "Adding personal just recipes"
 echo "import \"/usr/share/kohega/just/kohega.just\"" >> /usr/share/ublue-os/justfile

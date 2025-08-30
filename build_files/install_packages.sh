@@ -27,13 +27,6 @@ log "Install layered applications"
 # Layered Applications
 LAYERED_PACKAGES=(
     aria2c
-    kcalc
-    konsole
-    kate
-    krename
-    haruna
-    okular
-    gwenview
     syncthing
     filezilla
     firefox
