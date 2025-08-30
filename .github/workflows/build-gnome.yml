@@ -1,4 +1,4 @@
-name: Build GNOME Image
+name: Build Bazzite-GNOME-KHG
 
 on:
   pull_request:
@@ -25,7 +25,7 @@ env:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build_push:
