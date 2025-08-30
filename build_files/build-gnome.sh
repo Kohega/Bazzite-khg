@@ -46,6 +46,7 @@ LAYERED_PACKAGES=(
     gnome-shell
     gnome-session
     gnome-control-center
+    gnome-extensions-app
     gdm
     file-roller
     xdg-user-dirs-gtk
