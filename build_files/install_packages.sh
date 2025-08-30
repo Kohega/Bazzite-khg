@@ -70,6 +70,7 @@ log "Installing ZeroTier"
 # Add ZeroTier GPG key
 curl -s https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg | tee /etc/pki/rpm-gpg/RPM-GPG-KEY-zerotier
 
+
 # Add ZeroTier repository
 cat << 'EOF' | tee /etc/yum.repos.d/zerotier.repo
 [zerotier]
