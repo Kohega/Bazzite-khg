@@ -54,7 +54,7 @@ log "Enable loading kernel modules"
 setsebool -P domain_kernel_load_modules on
 
 log "Enabling system services"
-systemctl enable podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service coolercontrold.service
+systemctl enable sshd.service podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service coolercontrold.service
 
 log "Adding personal just recipes"
 echo "import \"/usr/share/kohega/just/kohega.just\"" >> /usr/share/ublue-os/justfile
