@@ -22,6 +22,15 @@ for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
 done
 
+log "Installing RPM packages"
+
+# Install RPMs
+for rpm_file in ctx/rpm/*.rpm; do
+    if [ -f "$rpm_file" ]; then
+        dnf5 install -y "$rpm_file"
+    fi
+done
+
 log "Install layered applications"
 
 # Layered Applications
@@ -55,15 +64,6 @@ log "Disable Copr repos as we do not need it anymore"
 
 for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr disable "$repo"
-done
-
-log "Installing RPM packages"
-
-# Install RPMs
-for rpm_file in ctx/rpm/*.rpm; do
-    if [ -f "$rpm_file" ]; then
-        dnf5 install -y "$rpm_file"
-    fi
 done
 
 log "Installing ZeroTier"
