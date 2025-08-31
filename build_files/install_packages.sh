@@ -17,6 +17,7 @@ COPR_REPOS=(
     atim/heroic-games-launcher
     zeno/scrcpy
     codifryed/CoolerControl
+    lnvso/heroic-games-launcher
 )
 for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
