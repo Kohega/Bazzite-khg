@@ -61,8 +61,8 @@ systemctl enable sshd.service podman.socket syncthing@kohega.service zerotier-on
 log "Adding personal just recipes"
 echo "import \"/usr/share/kohega/just/kohega.just\"" >> /usr/share/ublue-os/justfile
 
-#log "Rebuild initramfs"
-#echo_group /ctx/build-initramfs.sh
+log "Rebuild initramfs"
+echo_group /ctx/build-initramfs.sh
 
 log "Post build cleanup"
 echo_group /ctx/cleanup.sh
