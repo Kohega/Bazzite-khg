@@ -10,7 +10,6 @@ log() {
 log "Building initramfs"
 
 # Get kernel version and build initramfs
-export DRACUT_NO_XATTR=1
 KERNEL_VERSION="$(dnf5 repoquery --installed --queryformat='%{evr}.%{arch}' kernel)"
 /usr/bin/dracut \
   --no-hostonly \

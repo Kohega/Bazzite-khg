@@ -22,20 +22,19 @@ for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
 done
 
-log "Installing RPM packages"
-
-# Install RPMs
-for rpm_file in ctx/rpm/*.rpm; do
-    if [ -f "$rpm_file" ]; then
-        dnf5 install -y "$rpm_file"
-    fi
-done
-
 log "Install layered applications"
 
 # Layered Applications
 LAYERED_PACKAGES=(
     aria2c
+    kcalc
+    konsole
+    kate
+    krename
+    haruna
+    okular
+    gwenview
+    ark
     syncthing
     filezilla
     firefox
@@ -56,7 +55,6 @@ LAYERED_PACKAGES=(
     qbittorrent
     discord
     coolercontrold
-    samba
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
@@ -66,10 +64,18 @@ for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr disable "$repo"
 done
 
+log "Installing RPM packages"
+
+# Install RPMs
+for rpm_file in ctx/rpm/*.rpm; do
+    if [ -f "$rpm_file" ]; then
+        dnf5 install -y "$rpm_file"
+    fi
+done
+
 log "Installing ZeroTier"
 # Add ZeroTier GPG key
 curl -s https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg | tee /etc/pki/rpm-gpg/RPM-GPG-KEY-zerotier
-
 
 # Add ZeroTier repository
 cat << 'EOF' | tee /etc/yum.repos.d/zerotier.repo

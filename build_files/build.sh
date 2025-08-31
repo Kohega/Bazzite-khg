@@ -25,29 +25,8 @@ log "Starting building"
 mkdir /data /videos /games
 
 ### Install packages
-log "Install layered applications"
-
-# KDE Applications
-LAYERED_PACKAGES=(
-  kget
-  kate
-  okular
-  gwenview
-  haruna
-  ark
-  kcalc
-  konsole
-  krename
-)
-dnf5 install -y \
-    --setopt=install_weak_deps=False \
-    --allowerasing \
-    --skip-unavailable \
-    "${LAYERED_PACKAGES[@]}"
-
+log "Installing apps"
 echo_group /ctx/install_packages.sh
-
-dnf5 install -y ctx/rpm/kde/kvantum-1.1.5-1.fc42.x86_64.rpm
 
 log "Allow Samba on home dirs"
 setsebool -P samba_enable_home_dirs=1
@@ -56,7 +35,7 @@ log "Enable loading kernel modules"
 setsebool -P domain_kernel_load_modules on
 
 log "Enabling system services"
-systemctl enable sshd.service podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service coolercontrold.service
+systemctl enable podman.socket syncthing@kohega.service zerotier-one.service lactd.service smb.service coolercontrold.service
 
 log "Adding personal just recipes"
 echo "import \"/usr/share/kohega/just/kohega.just\"" >> /usr/share/ublue-os/justfile
