@@ -108,6 +108,7 @@ enable-amdgpu-oc:
     echo "Already enabled"
   fi
 
+# Add a Virtual Display from a EDID file
 virtual-display:
   #!/usr/bin/env bash
   set -euo pipefail
@@ -121,3 +122,19 @@ virtual-display:
     echo "Already enabled"
   fi
 
+howdy-setup:
+  #!/usr/bin/env bash
+  sudo cp /etc/pam.d/sudo /etc/pam.d/sudo.bak
+  sudo cp /etc/pam.d/kde /etc/pam.d/kde.bak
+  sudo sed -i '2i\auth       sufficient   pam_howdy.so no_confirmation' /etc/pam.d/sudo  
+  sudo sed -i '2i\auth       sufficient   pam_howdy.so no_confirmation' /etc/pam.d/sddm
+  sudo sed -i '2i\auth       sufficient   pam_howdy.so no_confirmation' /etc/pam.d/kde
+  sudo chmod o+rw /dev/video*
+  sudo chmod 666 /dev/video*
+  sudo chmod 755 /usr/lib64/security/pam_howdy.so
+  sudo usermod -aG video gdm
+  sudo checkmodule -M -m -o /etc/howdy/howdy.mod /etc/howdy/howdy.te
+  sudo semodule_package -o /etc/howdy/howdy.pp -m /etc/howdy/howdy.mod
+  sudo semodule -i /etc/howdy/howdy.pp
+  sudo howdy add
+  sudo howdy test
