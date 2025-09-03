@@ -18,6 +18,7 @@ COPR_REPOS=(
     zeno/scrcpy
     codifryed/CoolerControl
     lnvso/heroic-games-launcher
+    principis/howdy-beta
 )
 for repo in "${COPR_REPOS[@]}"; do
     dnf5 -y copr enable "$repo"
@@ -56,6 +57,14 @@ LAYERED_PACKAGES=(
     qbittorrent
     discord
     coolercontrold
+    howdy
+    python-elevate
+    python-keyboard
+    python-pyv4l2
+    opencv
+    opencv-devel
+    opencv-python
+    v4l-utils
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
