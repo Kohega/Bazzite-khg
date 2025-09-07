@@ -1,11 +1,8 @@
 
-install-flatpaks:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    echo "Installing Flatpaks..."
-    xargs -a <(curl --retry 3 -sL /usr/share/kohega/flatpaks) flatpak --system -y install
-    echo "Flatpaks installation complete."
+install-system-flatpaks:
+    #!/usr/bin/bash
+    FLATPAK_LIST="$(curl https://raw.githubusercontent.com/kohega/bazzite-khg/refs/heads/main/system_files/usr/share/kohega/flatpaks | tr '\n' ' ')"
+    flatpak --system -y install ${FLATPAK_LIST}
 
 install-appimages:
     #!/usr/bin/env bash
@@ -136,5 +133,26 @@ howdy-setup:
   sudo checkmodule -M -m -o /etc/howdy/howdy.mod /etc/howdy/howdy.te
   sudo semodule_package -o /etc/howdy/howdy.pp -m /etc/howdy/howdy.mod
   sudo semodule -i /etc/howdy/howdy.pp
+  PAM_FILES=(
+  /etc/pam.d/sudo
+  /etc/pam.d/gdm-password
+  /etc/pam.d/gdm-fingerprint
+  /etc/pam.d/login
+  /etc/pam.d/system-auth
+  /etc/pam.d/password-auth
+  /etc/pam.d/su
+)
+
+for pam_file in "${PAM_FILES[@]}"; do
+  if [[ -f "$pam_file" ]]; then
+    if ! grep -q "pam_howdy.so" "$pam_file"; then
+      echo "📌 Inserting into $pam_file"
+      sudo sed -i '1i auth sufficient pam_howdy.so' "$pam_file"
+    else
+      echo "✅ Already present in $pam_file"
+    fi
+  else
+    echo "⚠️  PAM file $pam_file not found — skipping"
+  fi
   sudo howdy add
   sudo howdy test
