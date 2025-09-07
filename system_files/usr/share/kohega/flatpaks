@@ -1,7 +1,12 @@
 com.dec05eba.gpu_screen_recorder
 com.github.mtkennerly.ludusavi
+com.github.taiko2k.tauonmb
 com.github.tchx84.Flatseal
 com.moonlight_stream.Moonlight
+com.rustdesk.RustDesk
+com.spotify.Client
+com.steamgriddb.SGDBoop
+com.vscodium.codium
 com.vysp3r.ProtonPlus
 de.leopoldluley.Clapgrep
 io.ente.auth
@@ -10,8 +15,8 @@ io.github.ungoogled_software.ungoogled_chromium
 it.mijorus.gearlever
 org.gimp.GIMP
 org.kde.kdenlive
-org.libreoffice.LibreOffice
 org.localsend.localsend_app
+org.onlyoffice.desktopeditors
 org.prismlauncher.PrismLauncher
 org.rncbc.qpwgraph
 runtime/com.obsproject.Studio.Plugin.Gstreamer

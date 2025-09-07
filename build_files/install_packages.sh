@@ -37,6 +37,8 @@ LAYERED_PACKAGES=(
     okular
     gwenview
     ark
+    kdepim-addons
+    merkuro
     syncthing
     filezilla
     firefox
