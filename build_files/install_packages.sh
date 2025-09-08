@@ -37,8 +37,6 @@ LAYERED_PACKAGES=(
     okular
     gwenview
     ark
-    kdepim-addons
-    merkuro
     syncthing
     filezilla
     firefox
@@ -69,6 +67,10 @@ LAYERED_PACKAGES=(
     v4l-utils
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
+
+# Merkuro Calendar
+dnf5 install --setopt=install_weak_deps=True --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y merkuro kdepim-runtime kdepim-addons akonadi
+    
 
 log "Disable Copr repos as we do not need it anymore"
 
