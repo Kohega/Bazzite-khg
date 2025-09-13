@@ -65,6 +65,7 @@ LAYERED_PACKAGES=(
     opencv-devel
     opencv-python
     v4l-utils
+    gamemode
 )
 dnf5 install --setopt=install_weak_deps=False --allowerasing --skip-unavailable --enable-repo="*rpmfusion*" -y "${LAYERED_PACKAGES[@]}"
 
